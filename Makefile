@@ -6,23 +6,21 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2025/04/07 20:45:36 by elerazo-         ###   ########.fr        #
+#    Updated: 2025/04/07 21:54:22 by elerazo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	fractol
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
-MINIFLAGS	=	-lXext -lX11 -lm 
+MINIFLAGS	=	-lXext -lX11 -lm -lz 
 OBJDIR		=	build
-SRCSDIR		=	Src
+SRCSDIR		=	src
 SRCS		=	main.c fractal_initit.c fractol.c math_util.c key_handler.c
 
-MLX_PATH	=	./minilibx-linux
-MLX_OPATH	=	./minilibx-linux
-LIBFT_PATH	=	./Inc/libft
-PRINTF_PATH =	./Inc/printf
-MLX			=	$(MLX_PATH)/libmlx.a
-MLX_OTHER	=	$(MLX_OPATH)/libmlx_Linux.a
+MLX_PATH	=	./libs/minilibx
+LIBFT_PATH	=	./libs/libft/
+PRINTF_PATH =	./libs/printf/
+MLX			=	$(MLX_PATH)/libmlx.a $(MLX_PATH)/libmlx_Linux.a
 LIBFT		=	$(LIBFT_PATH)/libft.a
 PRINTF		=	$(PRINTF_PATH)/libftprintf.a
 
@@ -34,7 +32,7 @@ GREEN		=	\033[0;32m
 RED			=	\033[0;31m
 RESET		=	\033[m
 
-all: lib print minilib banner $(NAME)
+all: banner $(NAME)
 
 banner:
 	@printf "%b" "$(PURPLE)\n"                                                           
@@ -53,22 +51,22 @@ banner:
 
 $(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Inc/fractol.h | $(OBJDIR)
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(MINIFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@-mkdir $(OBJDIR)
 
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLX_OTHER)
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
 	@printf "%-42b" "$(BLUE)linking... $(PURPLE)$(@F)$(RESET)\n"
-	@$(CC) $(CFLAGS) $(MINIFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ $(MINIFLAGS) -o $@
 
-minilib:
+$(MLX):
 	@make -C $(MLX_PATH) > /dev/null 2>&1
 
-lib:
+$(LIBFT):
 	@make -C $(LIBFT_PATH) > /dev/null 2>&1
 
-print:
+$(PRINTF):
 	@make -C $(PRINTF_PATH) > /dev/null 2>&1
 
 fclean: banner clean
@@ -85,4 +83,4 @@ clean: banner
 
 re:    fclean all
 
-.PHONY: all banner clean fclean re lib print minilib
+.PHONY: all banner clean fclean re $(MLX) $(LIBFT) $(PRINTF)

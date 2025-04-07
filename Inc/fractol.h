@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:17 by eerazo-c          #+#    #+#             */
-/*   Updated: 2025/04/07 17:30:41 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/04/07 22:01:16 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -18,12 +18,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdarg.h>
-# include "../Inc/printf/ft_printf.h"
-# include "../Inc/libft/libft.h"
-# include <mlx.h>
+# include "../libs/minilibx/mlx.h"
+# include "../libs/libft/libft.h"
+# include "../libs/printf/ft_printf.h"
 
-# define WIDTH	800
-# define HEIGHT	800
+# define WIDTH	1500
+# define HEIGHT	1500
 
 //colors
 # define BLACK       0x000000  // RGB(0, 0, 0)
