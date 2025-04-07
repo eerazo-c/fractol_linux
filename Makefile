@@ -6,21 +6,23 @@
 #    By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/07 13:27:33 by elerazo-          #+#    #+#              #
-#    Updated: 2025/04/07 15:38:18 by elerazo-         ###   ########.fr        #
+#    Updated: 2025/04/07 20:45:36 by elerazo-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME		=	fractol
 CC			=	cc
-CFLAGS		=	-Wall -Wextra -Werror -Iminilibx-linux -I Inc/
-MINIFLAGS	=	-Lminilibx-linux -lmlx -lXext -lX11 -lm -lbsd
+CFLAGS		=	-Wall -Wextra -Werror -I Inc/ 
+MINIFLAGS	=	-lXext -lX11 -lm 
 OBJDIR		=	build
 SRCSDIR		=	Src
 SRCS		=	main.c fractal_initit.c fractol.c math_util.c key_handler.c
 
 MLX_PATH	=	./minilibx-linux
-LIBFT_PATH	=	Inc/libft
-PRINTF_PATH =	Inc/printf
+MLX_OPATH	=	./minilibx-linux
+LIBFT_PATH	=	./Inc/libft
+PRINTF_PATH =	./Inc/printf
 MLX			=	$(MLX_PATH)/libmlx.a
+MLX_OTHER	=	$(MLX_OPATH)/libmlx_Linux.a
 LIBFT		=	$(LIBFT_PATH)/libft.a
 PRINTF		=	$(PRINTF_PATH)/libftprintf.a
 
@@ -32,7 +34,7 @@ GREEN		=	\033[0;32m
 RED			=	\033[0;31m
 RESET		=	\033[m
 
-all: lib print minilib banner $(NAME) #mirar
+all: lib print minilib banner $(NAME)
 
 banner:
 	@printf "%b" "$(PURPLE)\n"                                                           
@@ -51,36 +53,35 @@ banner:
 
 $(OBJS): $(OBJDIR)/%.o : $(SRCSDIR)/%.c Inc/fractol.h | $(OBJDIR)
 	@printf "%-42b" "$(BLUE)compiling... $(PURPLE)$(@F)$(RESET)\n"
-	@$(CC) $(CFLAGS) $(MINIFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJDIR):
 	@-mkdir $(OBJDIR)
 
-$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX) 
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX) $(MLX_OTHER)
 	@printf "%-42b" "$(BLUE)linking... $(PURPLE)$(@F)$(RESET)\n"
 	@$(CC) $(CFLAGS) $(MINIFLAGS) $^ -o $@
 
 minilib:
-	@make -C $(MLX_PATH) --quiet --no-print-directory > /dev/null 2>&1
+	@make -C $(MLX_PATH) > /dev/null 2>&1
 
 lib:
-	@make -C $(LIBFT_PATH) --quiet --no-print-directory
+	@make -C $(LIBFT_PATH) > /dev/null 2>&1
 
 print:
-	@make -C $(PRINTF_PATH) --quiet --no-print-directory
+	@make -C $(PRINTF_PATH) > /dev/null 2>&1
 
 fclean: banner clean
 	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
 	@rm -rf $(NAME)
-	@make fclean -C $(LIBFT_PATH) --quiet --no-print-directory
-	@make fclean -C $(PRINTF_PATH) --quiet --no-print-directory
+	@make fclean -C $(LIBFT_PATH) > /dev/null 2>&1
+	@make fclean -C $(PRINTF_PATH) > /dev/null 2>&1
 
 clean: banner
 	@printf "%b" "$(BLUE)$(@)ing...$(RESET)\n"
 	@rm -rf $(OBJDIR)
-	@make clean -C $(MLX_PATH) --quiet --no-print-directory
-	@make clean -C $(LIBFT_PATH) --quiet --no-print-directory
-	@make clean -C $(PRINTF_PATH) --quiet --no-print-directory
+	@make clean -C $(LIBFT_PATH) > /dev/null 2>&1
+	@make clean -C $(PRINTF_PATH) > /dev/null 2>&1
 
 re:    fclean all
 

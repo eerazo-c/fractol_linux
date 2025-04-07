@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:17 by eerazo-c          #+#    #+#             */
-/*   Updated: 2024/04/05 20:52:35 by eerazo-c         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:30:41 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -59,7 +59,6 @@
 typedef struct s_complex
 {
 	double	x;
-
 	double	y;
 }	t_complex;
 
