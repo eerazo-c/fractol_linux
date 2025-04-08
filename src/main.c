@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:55:14 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/04/08 18:32:09 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/04/08 18:57:46 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -39,10 +39,10 @@ int	main(int ac, char **av)
 	f.name = av[1];
 	fractal_initit(&f, av);
 	start_render(&f);
-	mlx_hook(f.mlx_win, 17, 0, julia, &f);
-	mlx_mouse_hook(f.mlx_win, mouse_handler, &f);
-	mlx_key_hook(f.mlx_win, key_read, &f);
+	mlx_hook(f.mlx_win, 17, 0L, close_key, &f);
 	mlx_loop_hook(f.mlx, start_render, &f);
+	mlx_key_hook(f.mlx_win, key_read, &f);
+	mlx_mouse_hook(f.mlx_win, mouse_handler, &f);
 	mlx_loop(f.mlx);
 	return (EXIT_SUCCESS);
 }

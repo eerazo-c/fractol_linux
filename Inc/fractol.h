@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:17 by eerazo-c          #+#    #+#             */
-/*   Updated: 2025/04/08 17:50:07 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/04/08 19:12:12 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -84,6 +84,7 @@ typedef struct s_plano
 	double	zoom;
 	double	julia_x;
 	double	julia_y;
+	int		move_act;
 
 }				t_plano;
 
