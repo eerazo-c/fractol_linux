@@ -6,7 +6,7 @@
 /*   By: eerazo-c <eerazo-c@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 16:41:17 by eerazo-c          #+#    #+#             */
-/*   Updated: 2025/04/07 22:01:16 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:50:07 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FRACTOL_H
@@ -22,8 +22,8 @@
 # include "../libs/libft/libft.h"
 # include "../libs/printf/ft_printf.h"
 
-# define WIDTH	1500
-# define HEIGHT	1500
+# define WIDTH	1000
+# define HEIGHT	1000
 
 //colors
 # define BLACK       0x000000  // RGB(0, 0, 0)
@@ -36,22 +36,22 @@
 # define MAGENTA_BURST   0xFF00FF  // A vibrant magenta
 # define LIME_SHOCK      0xCCFF00  // A blinding lime
 # define NEON_ORANGE     0xFF6600  // A blazing neon orange
-# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple
-# define AQUA_DREAM      0x33CCCC  // A bright turquoise
+# define PSYCHEDELIC_PURPLE 0x660066  // A deep purple 
+# define AQUA_DREAM 0x33CCCC  // A bright turquoise
 # define HOT_PINK        0xFF66B2  // As the name suggests!
 # define ELECTRIC_BLUE   0x0066FF  // A radiant blue
 # define LAVA_RED        0xFF3300  // A bright, molten red//
 
-# define ESC 53
-# define CTR 256
+# define ESC 65307
+# define CTR 65507
 # define S_DOWN 5
 # define S_UP 4
-# define K_LEFT 123
-# define K_RIGHT 124
-# define K_UP 126
-# define K_DOWN 125
-# define ZOOM_IN 78
-# define ZOOM_OUT 69
+# define K_LEFT 65361
+# define K_RIGHT 65363
+# define K_UP 65362
+# define K_DOWN 65364
+# define ZOOM_IN 65451 // Keypad +
+# define ZOOM_OUT 65453 // Keypad -
 # define BUTTON5 5
 # define BUTTON4 4
 

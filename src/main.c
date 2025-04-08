@@ -6,7 +6,7 @@
 /*   By: elerazo- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 19:55:14 by elerazo-          #+#    #+#             */
-/*   Updated: 2025/04/07 20:58:10 by elerazo-         ###   ########.fr       */
+/*   Updated: 2025/04/08 17:48:27 by elerazo-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "fractol.h"
@@ -45,4 +45,4 @@ int	main(int ac, char **av)
 	mlx_mouse_hook(f.mlx_win, mouse_handler, &f);
 	mlx_loop(f.mlx);
 	return (EXIT_SUCCESS);
-} 
+}
